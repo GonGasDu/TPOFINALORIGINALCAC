@@ -17,8 +17,6 @@ import os
 import time
 #--------------------------------------------------------------------
 
-
-
 app = Flask(__name__)
 CORS(app)  # Esto habilitará CORS para todas las rutas
 
@@ -97,7 +95,7 @@ class Catalogo:
         self.conn.commit()
         return self.cursor.rowcount > 0
 
-    #----------------------------------------------------------------
+ #----------------------------------------------------------------
     def mostrar_producto(self, codigo):
         # Mostramos los datos de un producto a partir de su código
         producto = self.consultar_producto(codigo)
@@ -113,21 +111,18 @@ class Catalogo:
         else:
             print("Producto no encontrado.")
 
-
 #--------------------------------------------------------------------
 # Cuerpo del programa
 #--------------------------------------------------------------------
 # Crear una instancia de la clase Catalogo
-#catalogo = Catalogo(host='127.0.0.1', user='root', password='', database='miapp')
+# catalogo = Catalogo(host='127.0.0.1', user='root', password='', database='miapp')
 catalogo = Catalogo(host='GGDuplessis.mysql.pythonanywhere-services.com', user='GGDuplessis', password='BBDDCAC24157', database='GGDuplessis$myapp')
-
 
 # Carpeta para guardar las imagenes.
 # RUTA_DESTINO = './final/static/imagenes'
 
 #Al subir al servidor, deberá utilizarse la siguiente ruta. USUARIO debe ser reemplazado por el nombre de usuario de Pythonanywhere
 RUTA_DESTINO = '/home/GGDuplessis/mysite/static/imagenes'
-
 
 #--------------------------------------------------------------------
 # Listar todos los productos
@@ -138,7 +133,6 @@ RUTA_DESTINO = '/home/GGDuplessis/mysite/static/imagenes'
 def listar_productos():
     productos = catalogo.listar_productos()
     return jsonify(productos)
-
 
 #--------------------------------------------------------------------
 # Mostrar un sólo producto según su código
@@ -152,7 +146,6 @@ def mostrar_producto(codigo):
         return jsonify(producto), 201
     else:
         return "Producto no encontrado", 404
-
 
 #--------------------------------------------------------------------
 # Agregar un producto
@@ -268,6 +261,7 @@ def eliminar_producto(codigo):
     else:
         #Si el producto no se encuentra (por ejemplo, si no existe un producto con el codigo proporcionado), se devuelve un mensaje de error con un código de estado HTTP 404 (No Encontrado). 
         return jsonify({"mensaje": "Producto no encontrado"}), 404
+
 
 #--------------------------------------------------------------------
 if __name__ == "__main__":
