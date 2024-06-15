@@ -165,16 +165,37 @@ a:hover {
     margin: 20px auto;
 }
 
-.card img {
-    max-width: 80%;
-    border-radius: 10px;
-}
-
 .card h2 {
-    font-size: 1.5em;
-    margin-bottom: 10px;
+    font-size: 2em; /* Tamaño de letra grande para la descripción */
+    margin-bottom: 20px;
 }
 
-.card p {
+.card-content {
+    display: flex;
+    align-items: flex-start;
+    background-color: #00c0f2;
+}
+
+.card img {
+    width: 600px; /* Tamaño fijo para la imagen */
+    max-width: 100%; /* Asegura que la imagen no exceda el contenedor */
+    border-radius: 10px;
+    margin-right: 20px; /* Espacio entre la imagen y el texto */
+   
+}
+
+.card-details {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    
+}
+
+.card-details p {
     margin: 5px 0;
+    background-color: rgb(41, 5, 107);
+}
+
+.card-details p strong {
+    font-weight: bold; /* Negrita para el campo de precio */
 }
