@@ -7,7 +7,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mostrar Producto 👀</title>
     <link rel="stylesheet" href="./static/css/estilos.css">
-        
+    
     <style>
         /* Estilos adicionales para la tarjeta */
         .card {
@@ -20,21 +20,37 @@
             margin: 20px auto;
         }
 
-        .card img {
-            max-width: 80%;
-            border-radius: 10px;
-        }
-
         .card h2 {
-            font-size: 1.5em;
-            margin-bottom: 10px;
+            font-size: 2em; /* Tamaño de letra grande para la descripción */
+            margin-bottom: 20px;
         }
 
-        .card p {
+        .card-content {
+            display: flex;
+            align-items: flex-start;
+        }
+
+        .card img {
+            width: 600px; /* Tamaño fijo para la imagen */
+            max-width: 100%; /* Asegura que la imagen no exceda el contenedor */
+            border-radius: 10px;
+            margin-right: 20px; /* Espacio entre la imagen y el texto */
+        }
+
+        .card-details {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .card-details p {
             margin: 5px 0;
         }
+
+        .card-details p strong {
+            font-weight: bold; /* Negrita para el campo de precio */
+        }
     </style>
-    
     
 </head>
 
@@ -68,11 +84,15 @@
         <!-- Tarjeta para mostrar los datos del producto -->
         <div class="card" id="datos-producto">
             <h2 id="descripcion"></h2>
-            <img id="imagen-actual" src="" alt="Imagen del producto">
-            <p><strong>Código:</strong> <span id="codigo-text"></span></p>
-            <p><strong>Cantidad:</strong> <span id="cantidad"></span></p>
-            <p><strong>Precio:</strong> <span id="precio"></span></p>
-            <p><strong>Proveedor:</strong> <span id="proveedor"></span></p>
+            <div class="card-content">
+                <img id="imagen-actual" src="" alt="Imagen del producto">
+                <div class="card-details">
+                    <p><strong>Código:</strong> <span id="codigo-text"></span></p>
+                    <p><strong>Cantidad:</strong> <span id="cantidad"></span></p>
+                    <p><strong>Precio:</strong> <span id="precio"></span></p>
+                    <p><strong>Proveedor:</strong> <span id="proveedor"></span></p>
+                </div>
+            </div>
         </div>
     </div>
 
@@ -121,4 +141,3 @@
 </body>
 
 </html>
-
