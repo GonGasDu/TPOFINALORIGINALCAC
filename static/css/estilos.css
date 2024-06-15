@@ -199,3 +199,7 @@ a:hover {
 .card-details p strong {
     font-weight: bold; /* Negrita para el campo de precio */
 }
+
+.hidden {
+    display: none;
+}
