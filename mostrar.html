@@ -53,7 +53,7 @@
 
         // Variables de estado para controlar la visibilidad y los datos
         let codigo = '';
-        let mostrarDatosProducto = false;
+        let mostrarDatosProducto = true;
 
         document.getElementById('form-obtener-producto').addEventListener('submit', obtenerProducto);
         
@@ -71,7 +71,7 @@
                     }
                 })
                 .then(producto => {
-                    //mostrarDatosProducto = true; //Activa la vista de los datos
+                    
                     mostrarDetallesProducto(producto);
                 })
                 .catch(error => {
@@ -82,21 +82,21 @@
         // Muestra  los datos del producto
         function mostrarDetallesProducto(producto) {
             
-                document.getElementById('descripcion').value = descripcion;
-                document.getElementById('cantidad').value = cantidad;
-                document.getElementById('precio').value = precio;
-                document.getElementById('proveedor').value = proveedor;
+            document.getElementById('descripcion').value = producto.descripcion;
+            document.getElementById('cantidad').value = producto.cantidad;
+            document.getElementById('precio').value = producto.precio;
+            document.getElementById('proveedor').value = producto.proveedor;
 
-                const imagenActual = document.getElementById('imagen-actual');
-                if (producto.imagen_url) { // Verifica si imagen_url no está vacía y no se ha seleccionado una imagen
-                    imagenActual.src = 'https://www.pythonanywhere.com/user/GGDuplessis/files/home/GGDuplessis/mysite/static/imagenes' + imagen_url;
-                    
-                    imagenActual.style.display = 'block'; // Muestra la imagen actual
-                } else {
-                    imagenActual.style.display = 'none'; // Oculta la imagen si no hay URL
-                }
+            const imagenActual = document.getElementById('imagen-actual');
+            if (producto.imagen_url) { // Verifica si imagen_url no está vacía y no se ha seleccionado una imagen
+                imagenActual.src = 'https://www.pythonanywhere.com/user/GGDuplessis/files/home/GGDuplessis/mysite/static/imagenes' + imagen_url;
+                
+                imagenActual.style.display = 'block'; // Muestra la imagen actual
+            } else {
+                imagenActual.style.display = 'none'; // Oculta la imagen si no hay URL
+            }
 
-                document.getElementById('datos-producto').style.display = 'block';
+            document.getElementById('datos-producto').style.display = 'block';
             
         }
 
