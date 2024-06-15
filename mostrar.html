@@ -31,29 +31,28 @@
         </form>
 
         <!-- Sccion para  mostrarDatosProducto-->
-        <div id="datos-producto" style="display: none;">
+        <div id="datos-producto">
             <h2>Datos del Producto</h2>
-            <label for="descripcion">Descripción:</label>
-            <input type="text" id="descripcion" readonly><br>
-
-            <label for="cantidad">Cantidad:</label>
-            <input type="text" id="cantidad" readonly><br>
-
-            <label for="precio">Precio:</label>
-            <input type="text" id="precio" readonly><br>
-
-            <!-- Imagen actual del producto -->
-            <img id="imagen-actual" style="max-width: 200px; display: none;">
+            <table> <!-- Se crea una tabla para mostrar los productos. -->
+                <thead> <!--Encabezado de la tabla con columnas para código, descripción, cantidad, precio y acciones.-->
+                    <tr>
+                        <th>Código</th>
+                        <th id="descripcion">Descripción</th>
+                        <th id="cantidad">Cantidad</th>                
+                        <th align="center" id="precio">Precio</th>
+                        <th id="imagen-actual">Imagen</th>
+                        <th align="right" id="proveedor">Proveedor</th>
+                        
+                    </tr>
+                </thead>
+                <tbody id="tablaProducto"> </tbody>
+            </table><br>
             
         </div>
     </div>
 
     <script>
         const URL = "https://ggduplessis.pythonanywhere.com/"
-
-        // Variables de estado para controlar la visibilidad y los datos
-        //let codigo = '';
-        let mostrarDatosProducto = true;
 
         document.getElementById('form-obtener-producto').addEventListener('submit', obtenerProducto);
         
@@ -89,7 +88,7 @@
 
             const imagenActual = document.getElementById('imagen-actual');
             if (producto.imagen_url) { // Verifica si imagen_url no está vacía y no se ha seleccionado una imagen
-                imagenActual.src = 'https://www.pythonanywhere.com/user/GGDuplessis/files/home/GGDuplessis/mysite/static/imagenes' + imagen_url;
+                imagenActual.src = 'https://www.pythonanywhere.com/user/GGDuplessis/files/home/GGDuplessis/mysite/static/imagenes' + producto.imagen_url;
                 
                 imagenActual.style.display = 'block'; // Muestra la imagen actual
             } else {
