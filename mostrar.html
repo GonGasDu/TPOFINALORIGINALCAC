@@ -126,11 +126,16 @@
                 });
         }
 
+        function formatearPrecioMoneda(precio) {
+            return new Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS' }).format(precio);
+            // Ajusta 'es-AR' según el formato de moneda que desees utilizar (por ejemplo, 'es-ES' para euros).
+        }
+
         function mostrarDetallesProducto(producto) {
             document.getElementById('codigo-text').textContent = producto.codigo;
             document.getElementById('descripcion').textContent = producto.descripcion;
             document.getElementById('cantidad').textContent = producto.cantidad;
-            document.getElementById('precio').textContent = producto.precio;
+            document.getElementById('precio').textContent = formatearPrecioMoneda(producto.precio);
             document.getElementById('proveedor').textContent = producto.proveedor;
 
             const imagenActual = document.getElementById('imagen-actual');
