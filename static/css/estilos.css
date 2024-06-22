@@ -203,3 +203,7 @@ a:hover {
 .hidden {
     display: none;
 }
+
+.cantidad-cero-negativa {
+    color: red;
+}
