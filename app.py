@@ -8,6 +8,7 @@ from flask_cors import CORS
 
 # Instalar con pip install mysql-connector-python
 import mysql.connector
+from mysql.connector import errorcode
 
 # Si es necesario, pip install Werkzeug
 from werkzeug.utils import secure_filename
@@ -53,7 +54,7 @@ class Catalogo:
             imagen_url VARCHAR(255),
             proveedor INT(4))''')
         self.conn.commit()
-
+        
         # Cerrar el cursor inicial y abrir uno nuevo con el parámetro dictionary=True
         self.cursor.close()
         self.cursor = self.conn.cursor(dictionary=True)
@@ -115,12 +116,9 @@ class Catalogo:
 # Cuerpo del programa
 #--------------------------------------------------------------------
 # Crear una instancia de la clase Catalogo
-# catalogo = Catalogo(host='127.0.0.1', user='root', password='', database='miapp')
 catalogo = Catalogo(host='GGDuplessis.mysql.pythonanywhere-services.com', user='GGDuplessis', password='BBDDCAC24157', database='GGDuplessis$myapp')
 
-# Carpeta para guardar las imagenes.
-# RUTA_DESTINO = './final/static/imagenes'
-
+# Carpeta para guardar las imagenes
 #Al subir al servidor, deberá utilizarse la siguiente ruta. USUARIO debe ser reemplazado por el nombre de usuario de Pythonanywhere
 RUTA_DESTINO = '/home/GGDuplessis/mysite/static/imagenes'
 

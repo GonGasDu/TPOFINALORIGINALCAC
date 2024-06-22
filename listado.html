@@ -30,6 +30,7 @@
                 <th align="center">Precio</th>
                 <th>Imagen</th>
                 <th align="right">Proveedor</th>
+                <th  class="hidden">Características</th> <!-- Nueva columna -->
                 
             </tr>
         </thead>
@@ -74,6 +75,7 @@
                         <td align="right">${formatearPrecioMoneda(producto.precio)}</td>
                         <td><img src="https://www.pythonanywhere.com/user/GGDuplessis/files/home/GGDuplessis/mysite/static/imagenes/${producto.imagen_url}" alt="Imagen del producto" style="width: 100px;"></td>
                         <td align="right">${producto.proveedor}</td>
+                        <td  class="hidden">${producto.caracteristicas}</td> <!-- Mostrar las características -->
                     `;
 
                     //Una vez que se crea la fila con el contenido del producto, se agrega a la tabla utilizando el método appendChild del elemento tablaProductos.
