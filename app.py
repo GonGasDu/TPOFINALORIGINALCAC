@@ -54,16 +54,19 @@ class Catalogo:
             imagen_url VARCHAR(255),
             proveedor INT(4))''')
         self.conn.commit()
-        
+
+        self.cursor.execute('''ALTER TABLE productos ADD COLUMN caracteristicas VARCHAR(255)''')
+        self.conn.commit()
+
         # Cerrar el cursor inicial y abrir uno nuevo con el parámetro dictionary=True
         self.cursor.close()
         self.cursor = self.conn.cursor(dictionary=True)
         
     #----------------------------------------------------------------
-    def agregar_producto(self, descripcion, cantidad, precio, imagen, proveedor):
+    def agregar_producto(self, descripcion, cantidad, precio, imagen, proveedor, caracteristicas):
                
-        sql = "INSERT INTO productos (descripcion, cantidad, precio, imagen_url, proveedor) VALUES (%s, %s, %s, %s, %s)"
-        valores = (descripcion, cantidad, precio, imagen, proveedor)
+        sql = "INSERT INTO productos (descripcion, cantidad, precio, imagen_url, proveedor, caracteristicas) VALUES (%s, %s, %s, %s, %s, %s)"
+        valores = (descripcion, cantidad, precio, imagen, proveedor, caracteristicas)
 
         self.cursor.execute(sql, valores)        
         self.conn.commit()
@@ -76,9 +79,9 @@ class Catalogo:
         return self.cursor.fetchone()
 
     #----------------------------------------------------------------
-    def modificar_producto(self, codigo, nueva_descripcion, nueva_cantidad, nuevo_precio, nueva_imagen, nuevo_proveedor):
-        sql = "UPDATE productos SET descripcion = %s, cantidad = %s, precio = %s, imagen_url = %s, proveedor = %s WHERE codigo = %s"
-        valores = (nueva_descripcion, nueva_cantidad, nuevo_precio, nueva_imagen, nuevo_proveedor, codigo)
+    def modificar_producto(self, codigo, nueva_descripcion, nueva_cantidad, nuevo_precio, nueva_imagen, nuevo_proveedor, nueva_caracteristicas):
+        sql = "UPDATE productos SET descripcion = %s, cantidad = %s, precio = %s, imagen_url = %s, proveedor = %s, caracteristicas = %s WHERE codigo = %s"
+        valores = (nueva_descripcion, nueva_cantidad, nuevo_precio, nueva_imagen, nuevo_proveedor, nueva_caracteristicas, codigo)
         self.cursor.execute(sql, valores)
         self.conn.commit()
         return self.cursor.rowcount > 0
@@ -102,12 +105,13 @@ class Catalogo:
         producto = self.consultar_producto(codigo)
         if producto:
             print("-" * 40)
-            print(f"Código.....: {producto['codigo']}")
-            print(f"Descripción: {producto['descripcion']}")
-            print(f"Cantidad...: {producto['cantidad']}")
-            print(f"Precio.....: {producto['precio']}")
-            print(f"Imagen.....: {producto['imagen_url']}")
-            print(f"Proveedor..: {producto['proveedor']}")
+            print(f"Código...........: {producto['codigo']}")
+            print(f"Descripción......: {producto['descripcion']}")
+            print(f"Cantidad.........: {producto['cantidad']}")
+            print(f"Precio...........: {producto['precio']}")
+            print(f"Imagen...........: {producto['imagen_url']}")
+            print(f"Proveedor........: {producto['proveedor']}")
+            print(f"Características..: {producto['caracteristicas']}")
             print("-" * 40)
         else:
             print("Producto no encontrado.")
@@ -157,7 +161,8 @@ def agregar_producto():
     cantidad = request.form['cantidad']
     precio = request.form['precio']
     imagen = request.files['imagen']
-    proveedor = request.form['proveedor']  
+    proveedor = request.form['proveedor']
+    caracteristicas = request.form['caracteristicas']
     nombre_imagen=""
 
     
@@ -166,7 +171,7 @@ def agregar_producto():
     nombre_base, extension = os.path.splitext(nombre_imagen) #Separa el nombre del archivo de su extensión.
     nombre_imagen = f"{nombre_base}_{int(time.time())}{extension}" #Genera un nuevo nombre para la imagen usando un timestamp, para evitar sobreescrituras y conflictos de nombres.
 
-    nuevo_codigo = catalogo.agregar_producto(descripcion, cantidad, precio, nombre_imagen, proveedor)
+    nuevo_codigo = catalogo.agregar_producto(descripcion, cantidad, precio, nombre_imagen, proveedor, caracteristicas)
     if nuevo_codigo:    
         imagen.save(os.path.join(RUTA_DESTINO, nombre_imagen))
 
@@ -189,6 +194,8 @@ def modificar_producto(codigo):
     nueva_cantidad = request.form.get("cantidad")
     nuevo_precio = request.form.get("precio")
     nuevo_proveedor = request.form.get("proveedor")
+    nueva_caracteristicas = request.form.get("caracteristicas")
+    
     
     
     # Verifica si se proporcionó una nueva imagen
@@ -221,7 +228,7 @@ def modificar_producto(codigo):
 
 
     # Se llama al método modificar_producto pasando el codigo del producto y los nuevos datos.
-    if catalogo.modificar_producto(codigo, nueva_descripcion, nueva_cantidad, nuevo_precio, nombre_imagen, nuevo_proveedor):
+    if catalogo.modificar_producto(codigo, nueva_descripcion, nueva_cantidad, nuevo_precio, nombre_imagen, nuevo_proveedor, nueva_caracteristicas):
         
         #Si la actualización es exitosa, se devuelve una respuesta JSON con un mensaje de éxito y un código de estado HTTP 200 (OK).
         return jsonify({"mensaje": "Producto modificado"}), 200
