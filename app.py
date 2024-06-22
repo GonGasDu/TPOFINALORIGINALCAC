@@ -55,7 +55,8 @@ class Catalogo:
             proveedor INT(4))''')
         self.conn.commit()
 
-        self.cursor.execute('''ALTER TABLE productos ADD COLUMN caracteristicas VARCHAR(255)''')
+        # 
+        # self.cursor.execute('''ALTER TABLE productos ADD COLUMN caracteristicas VARCHAR(255)''')
         self.conn.commit()
 
         # Cerrar el cursor inicial y abrir uno nuevo con el parámetro dictionary=True

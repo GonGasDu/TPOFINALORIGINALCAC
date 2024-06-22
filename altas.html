@@ -33,6 +33,9 @@
         <label for="precio">Precio:</label>
         <input type="number" step="0.01" id="precio" name="precio" required><br>
 
+        <label for="caracteristicas">Características:</label>
+        <input type="text" id="caracteristicas" name="caracteristicas" required><br>
+
         <label for="imagenProducto">Imagen del producto:</label>
         <input type="file" id="imagenProducto" name="imagen">
 
@@ -92,6 +95,7 @@
                     document.getElementById('precio').value = "";
                     document.getElementById('imagenProducto').value = "";
                     document.getElementById('proveedorProducto').value = "";
+                    document.getElementById('caracteristicas').value = "";
                 });
         })
     </script>
