@@ -32,7 +32,7 @@ body {
     top: 0;
     width: 100vw;
     height: 100px;
-    background-color: #390E8C;
+    background-color: #030838;
     display: flex;
     justify-content: flex-start;
     align-items: center; 
@@ -58,7 +58,7 @@ p {
 
 h1, h2, h3, h4, h5, h6 {
     text-align: center;
-    color: #ffd200;
+    color: #0e0d0d;
 }
 
 th{
@@ -120,13 +120,13 @@ input[type="submit"] {
 }
 
 input[type="submit"]:hover {
-    background-color: #0056b3;
+    background-color: #b30068;
 }
 
 button {
     padding: 8px;
     margin:4px;
-    background-color: #007bff;
+    background-color: #af1f1f;
     color: #ffffff;
     border: none;
     border-radius: 5px;
@@ -140,8 +140,8 @@ button:hover {
 a {
     padding: 8px;
     margin:4px;
-    background-color: #fdab13;
-    color: #1d1a39;
+    background-color: #222120;
+    color: #ffffff;
     border: none;
     border-radius: 5px;
     cursor: pointer;
