@@ -34,9 +34,9 @@ body {
     top: 0;
     width: 100vw;
     height: 100px;
-    background-color: #030838;
+    background-color: #070d41;
     display: flex;
-    justify-content: flex-start;
+    justify-content:space-around;
     align-items: center; 
     
     overflow: hidden;
@@ -45,9 +45,12 @@ body {
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
 }
 
-.logo-nav{height: 80%;
+.logo-nav{
+    height: 80%;
     overflow: hidden;
-    margin-left: 1em;
+    /*margin-left: 1em;*/
+    align-content: center;
+    justify-content: center;
 }
 
 p {
@@ -72,7 +75,7 @@ th{
 td {
     margin: 0 5px;
     padding: 0 20px;
-    border-left: 1px solid #1d1a39;
+    /*border-left: 1px solid #1d1a39;*/
 
 }
 
@@ -92,7 +95,7 @@ table {
     margin: 0 auto;
     padding: 20px;
     background-color: #790779;
-    border: 1px solid lightslategray;
+    border: 5px solid lightslategray;
     border-radius: 5px;
     box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.5);
 }
@@ -209,3 +212,15 @@ a:hover {
 .cantidad-cero-negativa {
     color: red;
 }
+
+.boton-nav {
+    background-color: #4716b9;
+    align-items:center;
+    font-size: 18px ;
+}
+.boton-config{
+    content: 'Configuracion del sistema';
+    font-size: 30px;
+    background-color: #af1f1f;
+}
+
